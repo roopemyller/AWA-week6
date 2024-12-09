@@ -37,12 +37,20 @@ router.get('/offers', async (req, res) => {
             if (offer.imageId) {
                 const image = await Image_1.Image.findById(offer.imageId);
                 return {
-                    ...offer.toObject(),
-                    imageUrl: image ? image.path : null,
+                    title: offer.title,
+                    description: offer.description,
+                    price: offer.price,
+                    imagePath: image ? image.path : null,
                 };
             }
-            return { ...offer.toObject(), imageUrl: null };
+            return {
+                title: offer.title,
+                description: offer.description,
+                price: offer.price,
+                imagePath: null,
+            };
         }));
+        console.log(offersWithImages);
         res.status(200).json(offersWithImages);
     }
     catch (error) {

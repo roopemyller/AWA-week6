@@ -33,17 +33,25 @@ router.post('/upload', upload.single('image'), async (req, res) => {
 
 router.get('/offers', async (req, res) => {
     try {
-        const offers = await Offer.find()
+        const offers = await Offer.find()        
         const offersWithImages = await Promise.all(offers.map(async (offer) => {
             if (offer.imageId){
                 const image = await Image.findById(offer.imageId)
                 return {
-                    ...offer.toObject(),
-                    imageUrl: image ? image.path : null,
+                    title: offer.title,
+                    description: offer.description,
+                    price: offer.price,
+                    imagePath: image ? image.path : null,
                 }
             }
-            return {...offer.toObject(), imageUrl: null}
+            return {
+                title: offer.title,
+                description: offer.description,
+                price: offer.price,
+                imagePath: null,
+            }
         }))
+        console.log(offersWithImages)
         res.status(200).json(offersWithImages)
     } catch (error) {
         console.error(error)

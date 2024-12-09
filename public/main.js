@@ -23,15 +23,13 @@ function renderOffers(offers){
         const cardDiv = document.createElement('div')
         cardDiv.className = 'card hoverable'
 
-        if(offer.imageUrl){
+        if(offer.imagePath){
             
             const cardImageDiv = document.createElement('div')
             cardImageDiv.className = 'card-image'
 
-            console.log("Trying path: ", offer.imageUrl)
             const img = document.createElement('img')
-            const path = offer.imageUrl.replace("public", "")
-            console.log(path)
+            const path = offer.imagePath.replace("public", "")
             img.src = `http://localhost:3000/${path}`
             img.alt = offer.title
             img.className = 'responsive-img'
