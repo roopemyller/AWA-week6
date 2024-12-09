@@ -27,7 +27,27 @@ router.post('/upload', upload.single('image'), async (req, res) => {
         res.status(201).send(`New offer saved successfully`)    
     }catch (err){
         console.error(err)
-        res.send("Server error")
+        res.send("Server error uploading offer")
+    }
+})
+
+router.get('/offers', async (req, res) => {
+    try {
+        const offers = await Offer.find()
+        const offersWithImages = await Promise.all(offers.map(async (offer) => {
+            if (offer.imageId){
+                const image = await Image.findById(offer.imageId)
+                return {
+                    ...offer.toObject(),
+                    imageUrl: image ? image.path.replace('public/', '/') : null,
+                }
+            }
+            return {...offer.toObject(), imageUrl: null}
+        }))
+        res.status(200).json(offersWithImages)
+    } catch (error) {
+        console.error(error)
+        res.send("Server erro fetching offers")
     }
 })
 

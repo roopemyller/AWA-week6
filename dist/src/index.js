@@ -27,7 +27,27 @@ router.post('/upload', multer_config_1.default.single('image'), async (req, res)
     }
     catch (err) {
         console.error(err);
-        res.send("Server error");
+        res.send("Server error uploading offer");
+    }
+});
+router.get('/offers', async (req, res) => {
+    try {
+        const offers = await Offer_1.Offer.find();
+        const offersWithImages = await Promise.all(offers.map(async (offer) => {
+            if (offer.imageId) {
+                const image = await Image_1.Image.findById(offer.imageId);
+                return {
+                    ...offer.toObject(),
+                    imageUrl: image ? image.path.replace('public/', '/') : null,
+                };
+            }
+            return { ...offer.toObject(), imageUrl: null };
+        }));
+        res.status(200).json(offersWithImages);
+    }
+    catch (error) {
+        console.error(error);
+        res.send("Server erro fetching offers");
     }
 });
 exports.default = router;
