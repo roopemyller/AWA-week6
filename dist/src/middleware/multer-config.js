@@ -11,7 +11,8 @@ const storage = multer_1.default.diskStorage({
         cb(null, './public/images');
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '_' + (0, uuid_1.v4)() + path_1.default.extname(file.originalname));
+        const filename = file.originalname.split('.')[0] + '_' + (0, uuid_1.v4)() + path_1.default.extname(file.originalname);
+        cb(null, filename);
     }
 });
 const upload = (0, multer_1.default)({ storage: storage });

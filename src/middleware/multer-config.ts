@@ -7,8 +7,8 @@ const storage: StorageEngine = multer.diskStorage({
       cb(null, './public/images')
     },
     filename: function (req, file, cb) {
-      
-      cb(null, file.fieldname + '_' + uuidv4() + path.extname(file.originalname))
+      const filename = file.originalname.split('.')[0] + '_' + uuidv4() + path.extname(file.originalname);
+      cb(null, filename)
     }
   })
   
