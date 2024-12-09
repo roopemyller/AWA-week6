@@ -18,7 +18,7 @@ function renderOffers(offers){
     offersContainer.innerHTML = ''
     offers.forEach(offer => {
         const offerDiv = document.createElement('div')
-        offerDiv.className = 'col s12 m6 l4 offerDiv'
+        offerDiv.className = 'col s12 m6 l4'
 
         const cardDiv = document.createElement('div')
         cardDiv.className = 'card hoverable'
