@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function (){
     inputForm = document.getElementById("offerForm")
     
     
-    document.getElementById("submit").addEventListener("click", function (e){
+    inputForm.addEventListener("submit", function (e){
         e.preventDefault()
         const formData = new FormData(inputForm)
         formData.append("title", document.getElementById("title").value)
