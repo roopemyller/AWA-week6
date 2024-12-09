@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function (){
     inputForm = document.getElementById("offerForm")
     
     
-    document.getElementById("submit").addEventListener("click", function (e){
+    inputForm.addEventListener("submit", function (e){
         e.preventDefault()
         const title = document.getElementById("title").value
         const description = document.getElementById("description").value
