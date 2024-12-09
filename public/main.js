@@ -32,5 +32,6 @@ document.addEventListener("DOMContentLoaded", function (){
         const price = document.getElementById("price").value
         console.log("Collected input:", {title, price, description})
         submitOffer({title, price, description})
+        inputForm.reset()
     })
 })
