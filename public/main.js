@@ -30,7 +30,9 @@ function renderOffers(offers){
 
             console.log("Trying path: ", offer.imageUrl)
             const img = document.createElement('img')
-            img.src = `http://localhost:3000/${offer.imageUrl}`
+            const path = offer.imageUrl.replace("public", "")
+            console.log(path)
+            img.src = `http://localhost:3000/${path}`
             img.alt = offer.title
             img.className = 'responsive-img'
 

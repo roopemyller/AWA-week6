@@ -38,7 +38,7 @@ router.get('/offers', async (req, res) => {
                 const image = await Image_1.Image.findById(offer.imageId);
                 return {
                     ...offer.toObject(),
-                    imageUrl: image ? image.path.replace('public/', '/') : null,
+                    imageUrl: image ? image.path : null,
                 };
             }
             return { ...offer.toObject(), imageUrl: null };
