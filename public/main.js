@@ -1,20 +1,4 @@
 
-async function submitOffer(offer){
-    try {
-        const response = await fetch('/upload', {
-            method: 'POST',
-            body: offer
-        })
-        if (response.ok){
-            alert("Offer submitted successfully")
-        }else{
-            alert("Error submitting offer.")
-        }
-    }catch (error){
-        console.error(error)
-    }
-}
-
 async function fetchOffers(){
     try {
         const response = await fetch('/offers')
@@ -79,15 +63,29 @@ function renderOffers(offers){
     })
 }
 
+async function submitOffer(offer){
+    try {
+        const response = await fetch('/upload', {
+            method: 'POST',
+            body: offer
+        })
+        if (response.ok){
+            alert("Offer submitted successfully")
+            fetchOffers()
+        }else{
+            alert("Error submitting offer.")
+        }
+    }catch (error){
+        console.error(error)
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function (){
     fetchOffers()
     inputForm = document.getElementById("offerForm")
     inputForm.addEventListener("submit", function (e){
         e.preventDefault()
-        const formData = new FormData(inputForm)
-        formData.append("title", document.getElementById("title").value)
-        formData.append("description", document.getElementById("description").value)
-        formData.append("price", document.getElementById("price").value)
+        const formData = new FormData(e.target)
         submitOffer(formData)
         inputForm.reset()
     })
