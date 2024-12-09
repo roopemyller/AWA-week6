@@ -3,13 +3,7 @@ async function submitOffer(offer){
     try {
         const response = await fetch('/upload', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                title: offer.title,
-                description: offer.description,
-                price: Number(offer.price)
-            })
-
+            body: offer
         })
         if (response.ok){
             alert("Offer submitted successfully")
@@ -25,13 +19,13 @@ document.addEventListener("DOMContentLoaded", function (){
     inputForm = document.getElementById("offerForm")
     
     
-    inputForm.addEventListener("submit", function (e){
+    document.getElementById("submit").addEventListener("click", function (e){
         e.preventDefault()
-        const title = document.getElementById("title").value
-        const description = document.getElementById("description").value
-        const price = document.getElementById("price").value
-        console.log("Collected input:", {title, price, description})
-        submitOffer({title, price, description})
+        const formData = new FormData(inputForm)
+        formData.append("title", document.getElementById("title").value)
+        formData.append("description", document.getElementById("description").value)
+        formData.append("price", document.getElementById("price").value)
+        submitOffer(formData)
         inputForm.reset()
     })
 })
