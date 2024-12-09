@@ -1,7 +1,7 @@
 
 async function submitOffer(offer){
     try {
-        const response = await fetch('/add', {
+        const response = await fetch('/upload', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

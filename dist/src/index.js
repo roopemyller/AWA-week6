@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const Offer_1 = require("./models/Offer");
 const router = (0, express_1.Router)();
-router.post('/add', async (req, res) => {
+router.post('/upload', async (req, res) => {
     const { title, description, price } = req.body;
     console.log("Received: ", req.body);
     try {

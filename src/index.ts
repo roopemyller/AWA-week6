@@ -4,10 +4,10 @@ import { Offer } from "./models/Offer";
 
 const router: Router = Router()
 
-router.post('/add', async (req, res) => {
+router.post('/upload', async (req, res) => {
     const {title, description, price} = req.body
     console.log("Received: ", req.body)
-    
+
     try {
         let newOffer = new Offer({title, description, price})
         await newOffer.save()
