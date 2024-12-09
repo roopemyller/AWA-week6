@@ -3,24 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Offers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <script src="main.js"></script>
 </head>
 <body>
-    <form id="offerForm">
-        <label >Title</label><br>
-        <input type="text" name="" id="title"><br>
-        <label >Price</label><br>
-        <input type="text" name="" id="price"><br>
-        <label >Description</label><br>
-        <textarea name="" id="description"></textarea><br>
-        <label >Image</label><br>
-        <input type="file" name="image" id="image" accept="image/*"><br><br>
-        <button id="submit" type="submit">Button</button>
-    </form>
+    <div class="container">
+        <h2 class="center-align">Offers</h2>
+        <form class="card-panel" id="offerForm">
+            <div class="input-field">
+                <label >Title</label><br>
+                <input type="text" name="" id="title"><br>
+            </div>
+            <div class="input-field">
+                <label >Price</label><br>
+                <input type="text" name="" id="price"><br>
+            </div>
+            <div class="input-field">
+                <label >Description</label><br><br>
+                <textarea class="materialize-textarea" id="description"></textarea><br>
+            </div>
 
-    <div id="offersContainer">
-        
+            <div class="input-field file-field">
+                <div class="btn">
+                    <span>Upload image:</span>
+                    <input type="file" name="image" id="image" accept="image/*"><br><br>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path-validate" type="text" placeholder="Upload your product image">
+                </div>
+            </div>
+
+            <div class="input-field">
+                <button class="btn waver-effect waves-light" id="submit" type="submit">Button</button>
+            </div>
+                        
+        </form>
+    
+        <div id="offersContainer" class="row">
+    
+        </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

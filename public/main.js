@@ -34,27 +34,47 @@ function renderOffers(offers){
     offersContainer.innerHTML = ''
     offers.forEach(offer => {
         const offerDiv = document.createElement('div')
-        offerDiv.classList.add('offerDiv')
+        offerDiv.className = 'col s12 m6 l4'
+
+        const cardDiv = document.createElement('div')
+        cardDiv.className = 'card hoverable'
+
         if(offer.imageUrl){
+            
+            const cardImageDiv = document.createElement('div')
+            cardImageDiv.className = 'card-image'
+
             console.log("Trying path: ", offer.imageUrl)
             const img = document.createElement('img')
             img.src = `http://localhost:3000/${offer.imageUrl}`
             img.alt = offer.title
-            img.style.maxWidth = '100px'
-            offerDiv.appendChild(img)
+            img.className = 'responsive-img'
+
+            const spanTitle = document.createElement('span')
+            spanTitle.className = 'card-title'
+            spanTitle.textContent = offer.title
+
+            cardImageDiv.appendChild(img)
+            cardImageDiv.appendChild(spanTitle)
+
+            cardDiv.appendChild(cardImageDiv)
         }
-        const title = document.createElement('p')
-        title.textContent = `Title: ${offer.title}`
-        offerDiv.appendChild(title)
+
+        const cardContentDiv = document.createElement('div')
+        cardContentDiv.className = 'card-content'
 
         const description = document.createElement('p')
         description.textContent = `Description: ${offer.description}`
-        offerDiv.appendChild(description)
 
         const price = document.createElement('p')
         price.textContent = `Price: ${offer.price} €`
-        offerDiv.appendChild(price)
 
+
+        cardContentDiv.appendChild(description);
+        cardContentDiv.appendChild(price)
+
+        cardDiv.appendChild(cardContentDiv)
+        offerDiv.appendChild(cardDiv)
         offersContainer.appendChild(offerDiv)
     })
 }
